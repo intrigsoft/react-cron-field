@@ -90,7 +90,10 @@ const preview: Preview = {
       canvas: {
         style: { overflow: 'visible' },
       }
-    }
+    },
+    // Set Introduction as the default story
+    viewMode: 'docs',
+    defaultPath: '/docs/introduction--docs'
   },
 };
 

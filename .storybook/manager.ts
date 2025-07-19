@@ -8,14 +8,13 @@ addons.setConfig({
   },
 });
 
-// When DOM is ready, inject footer + GitHub link
+// When DOM is ready, inject footer + GitHub link + redirect to docs
 if (typeof window !== 'undefined') {
   window.addEventListener('load', () => {
     // Add footer message with link to Storybook site
     const interval = setInterval(() => {
       const explorerMenu = document.getElementById('storybook-explorer-menu');
       if (explorerMenu && !document.getElementById('storybook-footer')) {
-        // Create footer container
         const footer = document.createElement('div');
         footer.id = 'storybook-footer';
         footer.style.marginTop = '20px';
@@ -25,7 +24,6 @@ if (typeof window !== 'undefined') {
         footer.style.color = '#999';
         footer.style.borderTop = '1px solid #e6e6e6';
 
-        // Create link to Storybook site
         const link = document.createElement('a');
         link.href = 'https://storybook.js.org/';
         link.target = '_blank';
@@ -33,12 +31,10 @@ if (typeof window !== 'undefined') {
         link.style.color = '#1EA7FD';
         link.style.textDecoration = 'none';
 
-        // Assemble the footer text with the link
         footer.appendChild(document.createTextNode('Documentation powered by '));
         footer.appendChild(link);
 
-        // Add footer after the explorer menu
-        explorerMenu.parentNode.insertBefore(footer, explorerMenu.nextSibling);
+        explorerMenu.parentNode?.insertBefore(footer, explorerMenu.nextSibling);
         clearInterval(interval);
       }
     }, 300);
@@ -66,6 +62,8 @@ if (typeof window !== 'undefined') {
         topBar.appendChild(link);
         clearInterval(githubInterval);
       }
-    }, 300); // Wait until top bar is available
+    }, 300);
   });
 }
+//http://localhost:3000/?path=/docs/introduction--docs
+//http://localhost:3000/?path=/docs/introduction--docs
