@@ -1,0 +1,64 @@
+<script>
+  // This script adds polyfills for ReactDOM methods which were removed in React 19
+  // It will run before the JavaScript bundle is loaded
+  window.addEventListener('DOMContentLoaded', function() {
+    if (window.ReactDOM) {
+      // Polyfill for unmountComponentAtNode
+      if (!window.ReactDOM.unmountComponentAtNode) {
+        console.log('[Storybook] Adding polyfill for ReactDOM.unmountComponentAtNode');
+        window.ReactDOM.unmountComponentAtNode = function(container) {
+          if (container._reactRootContainer) {
+            const root = container._reactRootContainer;
+            if (typeof root.unmount === 'function') {
+              root.unmount();
+              return true;
+            }
+          }
+          return false;
+        };
+      }
+
+      // Polyfill for render
+      if (!window.ReactDOM.render && window.ReactDOM.createRoot) {
+        console.log('[Storybook] Adding polyfill for ReactDOM.render');
+        window.ReactDOM.render = function(element, container, callback) {
+          // Clean up any existing root
+          if (container._reactRootContainer) {
+            const root = container._reactRootContainer;
+            if (typeof root.unmount === 'function') {
+              root.unmount();
+            }
+          }
+
+          // Create a new root and render
+          const root = window.ReactDOM.createRoot(container);
+          container._reactRootContainer = root;
+          root.render(element);
+
+          // Execute callback if provided
+          if (typeof callback === 'function') {
+            callback();
+          }
+
+          return null;
+        };
+      }
+    }
+  });
+</script>
+<style>
+    /* The top‐level docs wrapper */
+    .sbdocs.sbdocs-preview {
+        overflow: visible !important;
+    }
+
+    /* Docs “story” container */
+    .sbdocs.sbdocs-preview .docs-story {
+        overflow: visible !important;
+    }
+
+    /* The inner flex container that holds your component */
+    .sbdocs.sbdocs-preview .docs-story .css-1qq744x {
+        overflow: visible !important;
+    }
+</style>

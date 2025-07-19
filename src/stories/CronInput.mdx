@@ -1,0 +1,97 @@
+import { Meta, Story, Canvas, Controls } from '@storybook/blocks';
+import * as CronInputStories from './CronInput.stories';
+
+<Meta of={CronInputStories} />
+
+# CronInput Component
+
+The `CronInput` component is a customizable React component for editing cron expressions. It provides a user-friendly interface for creating and editing cron expressions, with support for different layouts, presets, and themes.
+
+## Features
+
+- **Two Layout Options**: Choose between "cron-native" (showing the raw cron expression fields) or "natural" (a more user-friendly interface)
+- **Customizable Presets**: Provide your own presets or use the built-in ones
+- **Theming Support**: Customize the appearance with your own theme
+- **Human-Readable Descriptions**: Automatically generates human-readable descriptions of cron expressions
+- **Validation**: Validates cron expressions to ensure they are valid
+- **Hide Seconds**: Option to hide the seconds field for simpler cron expressions
+
+## Basic Usage
+
+```tsx
+import { CronInput } from 'react-cron-field';
+
+function MyComponent() {
+  const [cronExpression, setCronExpression] = useState('0 0 * * * *');
+
+  return (
+    <CronInput
+      value={cronExpression}
+      onChange={setCronExpression}
+      placeholder="Select cron expression"
+    />
+  );
+}
+```
+
+## Examples
+
+### Default
+
+<Canvas of={CronInputStories.Default} />
+
+### Natural Layout
+
+The natural layout provides a more user-friendly interface for editing cron expressions.
+
+<Canvas of={CronInputStories.NaturalLayout} />
+
+### Custom Presets
+
+You can provide your own presets to make it easier for users to select common cron expressions.
+
+<Canvas of={CronInputStories.CustomPresets} />
+
+### Custom Theme
+
+You can customize the appearance of the component with your own theme.
+
+<Canvas of={CronInputStories.CustomTheme} />
+
+### All Presets
+
+The component comes with a set of predefined presets that cover common use cases.
+
+<Canvas of={CronInputStories.AllPresets} />
+
+### Complex Expression
+
+The component can handle complex cron expressions.
+
+<Canvas of={CronInputStories.ComplexExpression} />
+
+### Hide Seconds
+
+You can hide the seconds field for simpler cron expressions.
+
+<Canvas of={CronInputStories.HideSeconds} />
+
+## Props
+
+<Controls />
+
+## Cron Expression Format
+
+The component supports both 5-field and 6-field cron expressions:
+
+- **5-field**: `minute hour day month dayOfWeek`
+- **6-field**: `second minute hour day month dayOfWeek`
+
+## Utility Functions
+
+The library also exports several utility functions for working with cron expressions:
+
+- `parseCronExpression`: Parses a cron expression string into a CronExpression object
+- `formatCronExpression`: Formats a CronExpression object into a string
+- `describeCronExpression`: Generates a human-readable description of a cron expression
+- `validateCronExpression`: Validates a cron expression

@@ -1,0 +1,69 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# React Cron Field
+
+A customizable React component for editing cron expressions.
+
+## Overview
+
+React Cron Field is a React component library that provides a user-friendly interface for creating and editing cron expressions. It offers both a raw cron expression editor and a more natural language interface, making it accessible to both technical and non-technical users.
+
+## Installation
+
+```bash
+npm install react-cron-field
+# or
+yarn add react-cron-field
+```
+
+## Basic Usage
+
+```tsx
+import { CronInput } from 'react-cron-field';
+import 'react-cron-field/dist/react-cron-field.css';
+
+function MyComponent() {
+  const [cronExpression, setCronExpression] = useState('0 0 * * * *');
+  
+  return (
+    <CronInput
+      value={cronExpression}
+      onChange={setCronExpression}
+      placeholder="Select cron expression"
+    />
+  );
+}
+```
+
+## Features
+
+- **Two Layout Options**: Choose between "cron-native" (showing the raw cron expression fields) or "natural" (a more user-friendly interface)
+- **Customizable Presets**: Provide your own presets or use the built-in ones
+- **Theming Support**: Customize the appearance with your own theme
+- **Human-Readable Descriptions**: Automatically generates human-readable descriptions of cron expressions
+- **Validation**: Validates cron expressions to ensure they are valid
+
+## Components
+
+The library includes the following components:
+
+- [CronInput](/docs/components-croninput--docs): The main component for editing cron expressions
+- [AnalogClockFace](/docs/components-analogclockface--docs): A customizable analog clock face used internally by the CronInput component
+
+## Utility Functions
+
+The library also exports several utility functions for working with cron expressions:
+
+- `parseCronExpression`: Parses a cron expression string into a CronExpression object
+- `formatCronExpression`: Formats a CronExpression object into a string
+- `describeCronExpression`: Generates a human-readable description of a cron expression
+- `validateCronExpression`: Validates a cron expression
+
+## Cron Expression Format
+
+The component supports both 5-field and 6-field cron expressions:
+
+- **5-field**: `minute hour day month dayOfWeek`
+- **6-field**: `second minute hour day month dayOfWeek`
