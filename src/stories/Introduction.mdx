@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/blocks';
 
 <Meta title="Introduction" />
 
@@ -26,7 +26,7 @@ import 'react-cron-field/dist/react-cron-field.css';
 
 function MyComponent() {
   const [cronExpression, setCronExpression] = useState('0 0 * * * *');
-  
+
   return (
     <CronInput
       value={cronExpression}
@@ -49,9 +49,7 @@ function MyComponent() {
 
 The library includes the following components:
 
-- [CronInput](/docs/components-croninput--docs): The main component for editing cron expressions
-- [AnalogClockFace](/docs/components-analogclockface--docs): A customizable analog clock face used internally by the CronInput component
-
+- [CronInput](/?path=/docs/components-croninput--docs): The main component for editing cron expressions
 ## Utility Functions
 
 The library also exports several utility functions for working with cron expressions:
@@ -67,3 +65,97 @@ The component supports both 5-field and 6-field cron expressions:
 
 - **5-field**: `minute hour day month dayOfWeek`
 - **6-field**: `second minute hour day month dayOfWeek`
+
+## Advanced Usage
+
+### Custom Presets
+
+You can provide your own presets to make it easier for users to select common cron expressions:
+
+```tsx
+import { CronInput } from 'react-cron-field';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [cronExpression, setCronExpression] = useState('0 0 * * * *');
+
+  const customPresets = [
+    {
+      label: 'Every hour',
+      value: '0 0 * * * *',
+      description: 'Runs every hour at minute 0',
+    },
+    {
+      label: 'Every day at noon',
+      value: '0 0 12 * * *',
+      description: 'Runs once a day at 12:00 PM',
+    },
+    {
+      label: 'Weekends at 10 AM',
+      value: '0 0 10 * * SAT,SUN',
+      description: 'Runs Saturday and Sunday at 10:00 AM',
+    },
+  ];
+
+  return (
+    <CronInput
+      value={cronExpression}
+      onChange={setCronExpression}
+      presets={customPresets}
+    />
+  );
+}
+```
+
+### Custom Theme
+
+You can customize the appearance of the component with your own theme:
+
+```tsx
+import { CronInput } from 'react-cron-field';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [cronExpression, setCronExpression] = useState('0 0 * * * *');
+
+  const customTheme = {
+    baseColor: 'bg-blue-100 dark:bg-blue-900',
+    primaryColor: 'bg-blue-500 text-white',
+    secondaryColor: 'bg-blue-200 text-blue-800',
+  };
+
+  return (
+    <CronInput
+      value={cronExpression}
+      onChange={setCronExpression}
+      theme={customTheme}
+    />
+  );
+}
+```
+
+## Accessibility
+
+The component is designed with accessibility in mind:
+
+- All interactive elements are keyboard accessible
+- ARIA attributes are used where appropriate
+- Color contrast meets WCAG 2.1 AA standards
+- Screen reader friendly
+
+## Troubleshooting
+
+### Common Issues
+
+- **Invalid cron expression**: Make sure your cron expression follows the correct format
+- **Styling issues**: Ensure you've imported the CSS file
+- **Unexpected behavior**: Check the console for any error messages
+
+### Browser Compatibility
+
+The component is tested and works in all modern browsers:
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)

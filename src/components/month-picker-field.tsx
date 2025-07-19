@@ -151,7 +151,7 @@ export function MonthPickerField({ value, onChange, label, placeholder, theme = 
         const a = Math.min(rangeStart, m),
           b = Math.max(rangeStart, m)
         const exists = sel.some((s) => s.type === "range" && s.month === a && s.endMonth === b)
-        const next = exists
+        const next: SelectedMonth[] = exists
           ? sel.filter((s) => !(s.type === "range" && s.month === a && s.endMonth === b))
           : [...sel, { type: "range", month: a, endMonth: b }]
 
@@ -160,7 +160,7 @@ export function MonthPickerField({ value, onChange, label, placeholder, theme = 
       }
     } else {
       const exists = sel.some((s) => s.type === "single" && s.month === m)
-      const next = exists
+      const next: SelectedMonth[] = exists
         ? sel.filter((s) => !(s.type === "single" && s.month === m))
         : [...sel, { type: "single", month: m }]
 
