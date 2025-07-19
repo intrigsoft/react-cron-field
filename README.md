@@ -94,8 +94,19 @@ For detailed documentation, please check out the following resources:
 - [Getting Started](./docs/getting-started.md) - Installation and basic usage
 - [Examples](./docs/examples.md) - Usage examples and patterns
 - [Contributing](./docs/contributing.md) - Guidelines for contributors
+- [Storybook Deployment](./docs/storybook-deployment.md) - How to deploy Storybook to GitHub Pages
 
-This library also includes a Storybook with interactive examples and documentation:
+This library also includes a Storybook with interactive examples and documentation.
+
+### Online Storybook
+
+You can view the Storybook online at:
+
+```
+https://[your-github-username].github.io/react-cron-field/
+```
+
+### Running Storybook Locally
 
 ```bash
 # Clone the repository
@@ -114,6 +125,10 @@ The Storybook includes:
 - Documentation of props and usage
 - Different configurations and use cases
 - Theming examples
+
+### Deploying Storybook
+
+The Storybook is automatically deployed to GitHub Pages when changes are pushed to the main branch. You can also manually trigger a deployment from the Actions tab in the GitHub repository.
 
 ## License
 
