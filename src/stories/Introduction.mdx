@@ -44,6 +44,7 @@ function MyComponent() {
 - **Theming Support**: Customize the appearance with your own theme
 - **Human-Readable Descriptions**: Automatically generates human-readable descriptions of cron expressions
 - **Validation**: Validates cron expressions to ensure they are valid
+- **Hide Seconds**: Option to hide the seconds field for simpler cron expressions
 
 ## Components
 
@@ -129,6 +130,27 @@ function MyComponent() {
       value={cronExpression}
       onChange={setCronExpression}
       theme={customTheme}
+    />
+  );
+}
+```
+
+### Hide Seconds
+
+You can hide the seconds field for simpler cron expressions:
+
+```tsx
+import { CronInput } from 'react-cron-field';
+import { useState } from 'react';
+
+function MyComponent() {
+  const [cronExpression, setCronExpression] = useState('0 0 * * * *');
+
+  return (
+    <CronInput
+      value={cronExpression}
+      onChange={setCronExpression}
+      showSeconds={false}
     />
   );
 }
