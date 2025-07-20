@@ -22,8 +22,8 @@
     "type-check": "tsc -b",
     "lint": "eslint .",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "storybook": "./scripts/setup-storybook-head.sh dev && storybook dev -p 6006",
+    "build-storybook": "./scripts/setup-storybook-head.sh build && storybook build",
     "deploy-storybook": "npm run build-storybook && gh-pages -d storybook-static"
   },
   "peerDependencies": {
